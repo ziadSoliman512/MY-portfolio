@@ -1,0 +1,8 @@
+const loader=document.getElementById('loader');window.addEventListener('load',()=>setTimeout(()=>loader.remove(),800));
+const typing=document.getElementById('typing');const words=['Full Stack Web Developer','AI & ML Enthusiast','Software Engineer'];let wi=0,ci=0,del=false;function type(){let w=words[wi];typing.textContent=w.slice(0,ci);if(!del&&ci<w.length){ci++;setTimeout(type,65)}else if(!del){del=true;setTimeout(type,1300)}else if(ci){ci--;setTimeout(type,30)}else{del=false;wi=(wi+1)%words.length;setTimeout(type,350)}}type();
+const glow=document.querySelector('.cursor-glow');window.addEventListener('mousemove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
+document.querySelectorAll('.skill,.project-card,.project-feature').forEach(card=>{card.addEventListener('mousemove',e=>{let r=card.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;card.style.transform=`perspective(700px) rotateX(${-y/55}deg) rotateY(${x/55}deg) translateY(-5px)`});card.addEventListener('mouseleave',()=>card.style.transform='')});
+document.querySelector('.menu').addEventListener('click',()=>{let n=document.querySelector('nav');n.classList.toggle('open')});
+document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>document.querySelector('nav').classList.remove('open')));
+window.addEventListener('scroll',()=>document.querySelector('.nav').classList.toggle('scrolled',window.scrollY>20));
